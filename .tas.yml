@@ -1,7 +1,7 @@
 postMerge :
   preRun:
     command:
-        - npm install
+        - npm ci
         - npm run build
         - node test/prepare-jest.js
   subModules:
