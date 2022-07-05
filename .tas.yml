@@ -1,14 +1,28 @@
----
-framework: jest
-preRun:
-     command:
+postMerge :
+  preRun:
+    command:
         - npm install
         - npm run build
         - node test/prepare-jest.js
-      env:
-        TEST_FRONTEND: 1
-postMerge:
-  pattern: 
-    - "./test/frontend.spec.js"
-configFile: "./config/jest-frontend.config.js"
+  subModules:
+      - name: frontend
+        path : "./test"
+        pattern:
+          - "./test/frontend.spec.js"
+        framework : jest
+        configFile : ./config/jest-frontend.config.js
+        preRun:
+          env:
+            TEST_FRONTEND: 1
+
+      - name: backend
+        path : "./test"
+        pattern:
+          - "./test/backend.spec.js"
+        framework : jest
+        configFile : ./config/jest-backend.config.js
+        preRun:
+          env:
+            TEST_BACKEND: 1
+version : 2.0.0
 tier: large
