@@ -36,6 +36,5 @@ describe("Test i18n.js", () => {
         localStorage.locale = "zh-HK";
         expect(currentLocale()).toEqual("zh-HK");
     });
-
 });
 
